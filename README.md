@@ -10,6 +10,8 @@
 
 ## 這個 repo 做什麼
 
+**使用情境：** 手邊沒有電腦，或不想在主電腦上安裝環境時，在 claude.ai 網頁版上傳素材、用文字描述需求，由雲端的 Claude 使用這裡準備好的 CLI 完成編修，再把成品傳回來。平常在自己電腦上試出可行的 CLI 做法後，記錄到 `docs/recipes.md` 或 `scripts/`，之後就能直接重複使用，不必每次從零開發工具。
+
 1. 你在 `tasks/` 寫一份任務說明（目標、輸入、輸出規格），素材放進同一個資料夾的 `in/`。
 2. 代理（例如 Claude Code）讀任務、安裝需要的 CLI、執行編修。如果是批次任務，就整個資料夾一起處理。
 3. 成品寫到 `out/`，並附一份 `REPORT.md` 說明做了什麼、怎麼做的、有沒有問題。之後提交並推送回 GitHub，你就能拿到結果。
@@ -47,7 +49,7 @@
 
 ### 需求
 
-- Linux（x86_64 或 aarch64）或 macOS、`bash`、`git`、`curl`、`tar`
+- Linux（x86_64 或 aarch64）、`bash`、`git`、`curl`、`tar`。`install.sh` 下載的是 Linux 版。在自己的 Mac 或 Windows 上，請從各 app 的 GitHub Releases 手動安裝（例如 macOS 的 `photocraft-cli-<ver>-macos-universal.zip`）
 - 只有在無法下載 release 時才需要 Rust 1.95 以上（[rustup](https://rustup.rs)），用來從原始碼編譯
 
 ### 安裝
