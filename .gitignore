@@ -1,0 +1,8 @@
+# 安裝的 CLI、原始碼與下載快取（用 setup/install.sh 重新產生）
+.craft/
+
+# 任務的中間檔不進版控；in/ 與 out/ 會提交，成品才能帶出環境
+tasks/*/work/
+
+*.log
+.DS_Store
