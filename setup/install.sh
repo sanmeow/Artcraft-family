@@ -18,7 +18,7 @@
 #   .craft/src/<app>          source checkouts (source method only)
 set -euo pipefail
 
-ALL_APPS=(photocraft effectcraft filmcraft vectorcraft lightcraft pdfcraft designcraft)
+ALL_APPS=(photocraft effectcraft filmcraft vectorcraft lightcraft pdfcraft designcraft soundcraft)
 ORG="${CRAFT_ORG:-storytold}"
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 CRAFT_HOME="${CRAFT_HOME:-$REPO_ROOT/.craft}"

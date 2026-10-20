@@ -38,6 +38,7 @@
 | [LightCraft](https://github.com/storytold/lightcraft) | Lightroom | `lightcraft-cli` | 照片庫、RAW 顯影、批次調色匯出 | 需要時 |
 | [PdfCraft](https://github.com/storytold/pdfcraft) | Acrobat | `pdfcraft-cli` | PDF 合併、拆分、頁面、註解、表單、密碼 | 需要時 |
 | [DesignCraft](https://github.com/storytold/designcraft) | InDesign | `designcraft-cli` | 版面編排、出版 | 需要時 |
+| [SoundCraft](https://github.com/storytold/soundcraft) | Audition | `soundcraft-cli` | 錄音、音訊剪輯與混音（DAW） | 需要時 |
 
 這些工具共用同一套設計：介面上的每個選單項目都是一個有 ID 的**命令**，CLI、JSON 控制通道和 MCP 伺服器都呼叫同一批命令。所以 GUI 做得到的事，CLI 原則上也做得到。各工具的命令清單用 `<app>-cli commands`（PdfCraft 是 `pdfcraft-cli tools`）查詢。
 
@@ -66,11 +67,11 @@ source setup/env.sh                 # 把 .craft/bin 加進 PATH
 - 最新版本由 `git ls-remote --tags` 取得，不需要 GitHub API。
 - `--update`：有新版才重新安裝。沒加這個參數時，已安裝的工具不會更動。
 - `--method release` / `--method source`：只用其中一種方式。
-- 安裝位置是 `.craft/`（不進版控，7 個 CLI 共約 500 MB），可以用 `CRAFT_HOME` 改位置。
+- 安裝位置是 `.craft/`（不進版控，全部 CLI 共約 500 MB 以上），可以用 `CRAFT_HOME` 改位置。
 
 ### 在 Claude Code 雲端環境（claude.ai/code）
 
-已實測：雲端 VM 可以直接下載 release，7 個 CLI 全部安裝約 30 秒，不需要編譯。雲端 VM 每次工作階段都是全新的，所以每個新工作階段開始時都要重新執行 `./setup/install.sh`（代理會依 `CLAUDE.md` 自動執行）。
+已實測：雲端 VM 可以直接下載 release，7 個 CLI 全部安裝約 30 秒（SoundCraft 是後來加入的，還沒有實際測試），不需要編譯。雲端 VM 每次工作階段都是全新的，所以每個新工作階段開始時都要重新執行 `./setup/install.sh`（代理會依 `CLAUDE.md` 自動執行）。
 
 ---
 
