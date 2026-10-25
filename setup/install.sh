@@ -18,8 +18,9 @@
 #   .craft/src/<app>          source checkouts (source method only)
 set -euo pipefail
 
-ALL_APPS=(photocraft effectcraft filmcraft vectorcraft lightcraft pdfcraft designcraft soundcraft)
-ORG="${CRAFT_ORG:-storytold}"
+ALL_APPS=(photocraft effectcraft filmcraft vectorcraft lightcraft pdfcraft designcraft soundcraft solidcraft)
+# GitHub owner of each app (most are under storytold).
+org_of() { case "$1" in solidcraft) echo tangency-labs ;; *) echo "${CRAFT_ORG:-storytold}" ;; esac; }
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 CRAFT_HOME="${CRAFT_HOME:-$REPO_ROOT/.craft}"
 METHOD=auto
@@ -55,13 +56,13 @@ esac
 
 # Latest release tag, read with git so it works where the GitHub API is blocked.
 latest_tag() {
-  git ls-remote --tags --refs "https://github.com/$ORG/$1" 2>/dev/null \
+  git ls-remote --tags --refs "https://github.com/$(org_of "$1")/$1" 2>/dev/null \
     | awk -F/ '{print $3}' | grep -E '^v[0-9]+\.[0-9]+\.[0-9]+$' | sort -V | tail -1
 }
 
 install_release() {
   local app="$1" tag="$2" ver="${2#v}"
-  local base="$app-$ver-linux-$ARCH" url="https://github.com/$ORG/$app/releases/download/$tag"
+  local base="$app-$ver-linux-$ARCH" url="https://github.com/$(org_of "$app")/$app/releases/download/$tag"
   local dl="$CRAFT_HOME/downloads/$app-$ver"
   rm -rf "$dl"; mkdir -p "$dl"
   log "$app: downloading $base.tar.gz"
@@ -84,7 +85,7 @@ install_source() {
   command -v cargo >/dev/null || { warn "cargo not found: install Rust from https://rustup.rs"; return 1; }
   rm -rf "$src"
   log "$app: cloning $tag"
-  GIT_LFS_SKIP_SMUDGE=1 git clone -q --depth 1 --branch "$tag" "https://github.com/$ORG/$app" "$src"
+  GIT_LFS_SKIP_SMUDGE=1 git clone -q --depth 1 --branch "$tag" "https://github.com/$(org_of "$app")/$app" "$src"
   log "$app: building $app-cli (cargo build --release, this takes several minutes)"
   (cd "$src" && cargo build --release --locked -p "$app-cli") >&2 \
     || (cd "$src" && cargo build --release -p "$app-cli") >&2

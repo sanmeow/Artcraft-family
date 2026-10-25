@@ -39,6 +39,7 @@
 | [PdfCraft](https://github.com/storytold/pdfcraft) | Acrobat | `pdfcraft-cli` | PDF 合併、拆分、頁面、註解、表單、密碼 | 需要時 |
 | [DesignCraft](https://github.com/storytold/designcraft) | InDesign | `designcraft-cli` | 版面編排、出版 | 需要時 |
 | [SoundCraft](https://github.com/storytold/soundcraft) | Audition | `soundcraft-cli` | 錄音、音訊剪輯與混音（DAW） | 需要時 |
+| [SolidCraft](https://github.com/tangency-labs/solidcraft) | SolidWorks / Fusion 360 | `solidcraft-cli` | 參數式 3D CAD：草圖、約束、特徵建模（由 tangency-labs 維護） | 需要時 |
 
 這些工具共用同一套設計：介面上的每個選單項目都是一個有 ID 的**命令**，CLI、JSON 控制通道和 MCP 伺服器都呼叫同一批命令。所以 GUI 做得到的事，CLI 原則上也做得到。各工具的命令清單用 `<app>-cli commands`（PdfCraft 是 `pdfcraft-cli tools`）查詢。
 
@@ -71,7 +72,7 @@ source setup/env.sh                 # 把 .craft/bin 加進 PATH
 
 ### 在 Claude Code 雲端環境（claude.ai/code）
 
-已實測：雲端 VM 可以直接下載 release，7 個 CLI 全部安裝約 30 秒（SoundCraft 是後來加入的，還沒有實際測試），不需要編譯。雲端 VM 每次工作階段都是全新的，所以每個新工作階段開始時都要重新執行 `./setup/install.sh`（代理會依 `CLAUDE.md` 自動執行）。
+已實測：雲端 VM 可以直接下載 release，7 個 CLI 全部安裝約 30 秒（SoundCraft、SolidCraft 是後來加入的，還沒有完整測試），不需要編譯。雲端 VM 每次工作階段都是全新的，所以每個新工作階段開始時都要重新執行 `./setup/install.sh`（代理會依 `CLAUDE.md` 自動執行）。
 
 ---
 
